@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Built-in-variables') {
+            steps {
+                echo "Build Number: ${env.BUILD_NUMBER}"
+                echo "Build ID: ${env.BUILD_ID} "
+                echo "JENKINS_URL: ${env.JENKINS_URL}"
+                echo "GIT_BRANCH:  ${env.GIT_BRANCH}"
+                echo "JOB_NAME: ${env.JOB_NAME}"
+                echo "BUILD_URL:  ${env.BUILD_URL}"
+                
+               
+            }
+    
+        }
+    }
+}
