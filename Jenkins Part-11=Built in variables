@@ -1,5 +1,17 @@
 pipeline {
     agent any
+    parameters {
+        string(
+            name: 'DEPLOY_ENV',
+            defaultValue: 'dev',
+            description: 'environment to deploy to'
+        )
+        booleanParam(
+            name: 'RUN_TESTS',
+            defaultValue: true,
+            description: 'Run test stage?'
+        )
+    }
 
     stages {
         stage('Built-in-variables') {
@@ -14,6 +26,12 @@ pipeline {
                
             }
     
+        }
+        stage('Pipeline-parameters'){
+            steps{
+                echo "Deploy Env: ${params.DEPLOY_ENV}"
+                echo "Run-Tests: ${params.RUN_TESTS}"
+            }
         }
     }
 }
