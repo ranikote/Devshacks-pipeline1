@@ -12,6 +12,11 @@ pipeline {
             description: 'Run test stage?'
         )
     }
+    environment{
+        REGION ='ap-south-1'
+        BUILD_VERSION = "1.0.${env.BUILD_NUMBER}"
+        Cloud = "AWS and Azure"
+    }
 
     stages {
         stage('Built-in-variables') {
@@ -33,5 +38,25 @@ pipeline {
                 echo "Run-Tests: ${params.RUN_TESTS}"
             }
         }
+        stage('Custom-parameters'){
+            steps{
+                echo "REGION: ${env.REGION}"
+                echo "BUILD_VERSION: ${env.BUILD_version}"
+                echo "Cloud: ${env.cloud}"
+            }
+            
+        }
+        stage('Dynamic Custom Vars') {
+            steps {
+                script {
+                
+                    env.RUNTIME_VAR = "runtime-${env.BUILD_NUMBER}"
+                     echo "DYNAMIC: ${env.RUNTIME_VAR}"
+                }
+
+               
+            }
+        }
+
     }
 }
