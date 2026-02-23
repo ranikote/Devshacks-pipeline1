@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Run Parallel Jobs') {
+            parallel {
+
+                stage('Frontend Job') {
+                    steps {
+                        echo 'frontend-job'
+                    }
+                }
+
+                stage('Backend Job') {
+                    steps {
+                        echo  'backend-job'
+                    }
+                }
+
+                stage('Database Job') {
+                    steps {
+                         echo 'database-job'
+                    }
+                }
+            }
+        }
+    }
+}
